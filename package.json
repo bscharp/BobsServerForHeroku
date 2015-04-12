@@ -1,6 +1,6 @@
 {
   "name": "BobsServerForHeroku",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Bobs server based on Node.js and Express for deployment on Heroku",
   "main": "web.js",
   "scripts": {
