@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML5 300 class topics</title>
+    <script type="text/javascript" src="javascript/jquery-1.11.1.js">   
+    </script>
+    <script>
+      $(document).ready(function() {
+        $('#newslinks a').click( function() {
+          var url=$(this).attr('href');
+          $('#headlines').load(url + ' #newsItem');
+          return false;
+        });			
+      }); // end ready
+    </script>
+    <link href="css/style1.css" rel="stylesheet" type="text/css" />
+    <style>
+      #newslinks li {
+        display: inline-block;
+        margin-right: 20px;
+      }
+      #newslinks li a {
+        padding: 5px 10px; 
+        background-color: white;
+        color: black !important;
+        text-decoration: none;	
+      }
+      #newslinks li a:hover {
+        background-color: rgb(110,138,195);
+        color: white !important;	
+      }
+      #headlines #newsItem {
+        margin-top: 10px;
+        padding: 20px;
+        border: 1px solid white;	
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+	<h1>Ajax</h1> 
+	</header>
+	<nav id="navigation" role="navigation">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+            <li><a href="ajax.html">How to use Ajax</a></li>
+            <li><a href="canvas.html">How to draw using Canvas and SVG graphics</a></li>
+			<li><a href="av.html">How to play and control audio/video</a></li>
+			<li><a href="camera.html">How to interact with camera and GPS</a></li>
+			<li><a href="data.html">How to store and retrieve data</a></li>
+			<li><a href="websocket.html">How to use WebSockets</a></li>  
+		</ul>
+		<h2>main navigation</h2> 
+	</nav>
+    <div id="primaryContent">
+      <article>
+        <p>The simplest Ajax function offered by jQuery is load(). This functions loads an HTML file into a specific element on the page. </p>
+        <p>To use the load() function, you first use a jQuery selector to identify the element on the page where the requested HTML should go; then call the load() function and pass the URL of the page you wish to retrieve.</p>
+        <p>The demo below has a bulleted list of links, each of which points to a different page containing defferent news headlines. Clicking a link loads a page into a empty div tag.</p>
+      </article>
+      <article>
+        
+		<ul id="newslinks">
+		  <li><a href="today.html">Today&#8217;s News</a></li>
+          <li><a href="yesterday.html">Yesterday&#8217;s News</a></li>
+          <li><a href="lastweek.html">Last Week&#8217;s News</a></li>
+		</ul>
+      </article>
+      <div id="headlines">
+        &nbsp;
+      </div>
+    </div> <!-- closing primaryContent   -->
+	<footer>
+		<p>
+		(&sup;) Copyleft by Bob
+		</p>
+	</footer>
+  </body>
+</html>
