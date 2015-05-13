@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <title>HTML5 300 class topics</title>
     <script type="text/javascript" src="javascript/jquery-1.11.1.js"></script>
-
-     <link href="css/style1.css" rel="stylesheet" type="text/css" />
+    <script src="javascript/Paint.js"></script>
+    <link href="css/style1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/Paint.css">
+  
   </head>
 
   <body>
     <header>
-	<h1>Canvas and SVG</h1> 
+	<h1>Canvas</h1> 
 	</header>
 	<nav id="navigation" role="navigation">
 		<ul>
 			<li><a href="index.html">Home</a></li>
             <li><a href="ajax.html">How to use Ajax</a></li>
-            <li><a href="canvas.html">How to draw using Canvas and SVG graphics</a></li>
+            <li><a href="canvas.html">How to draw using Canvas</a></li>
 			<li><a href="av.html">How to play and control audio/video</a></li>
 			<li><a href="camera.html">How to interact with camera and GPS</a></li>
 			<li><a href="data.html">How to store and retrieve data</a></li>
@@ -27,11 +29,33 @@
     <div id="primaryContent">
 
       <article>
-        &nbsp;
+       <p>One of the most importand HTML5 tools for rich applications is the canvas, a drawing surface. Compared with other HTML elements, the canvas is unique because it required Javascript. There's no way to draw shapes or paint pictures without it.</p>
+        <p>Choose the pen color and pen thickness from the 2 toolbars. Click on the canvas with the mouse button, move the mouse to draw a line and release the mouse button to end the line.</p>
       </article>
-      <article>
-        &nbsp;
-      </article>
+<div class="Toolbar">
+    - Pen Color -<br>
+    <img id="redPen" src="images/pen_red.gif" alt="Red Pen" onclick="changeColor('rgb(212,21,29)', this)">
+    <img id="greenPen" src="images/pen_green.gif" alt="Green Pen" onclick="changeColor('rgb(131,190,61)', this)"> 
+    <img id="bluePen" src="images/pen_blue.gif" alt="Blue Pen" onclick="changeColor('rgb(0,86,166)', this)">
+  </div>
+  <div class="Toolbar">
+    - Pen Thickness -<br>
+    <img src="images/pen_thin.gif" alt="Thin Pen" onclick="changeThickness(1, this)">
+    <img src="images/pen_medium.gif" alt="Medium Pen" onclick="changeThickness(5, this)"> 
+    <img src="images/pen_thick.gif" alt="Thick Pen" onclick="changeThickness(10, this)">
+  </div>
+  <div class="CanvasContainer">
+    <canvas id="drawingCanvas" width=700" height="300"></canvas>
+  </div>
+  <div class="Toolbar">
+    - Operations -<br>
+    <button onclick="saveCanvas()">Save the Canvas</button>
+    <button onclick="clearCanvas()">Clear the Canvas</button>
+    <div id="savedCopyContainer">
+      <img id="savedImageCopy"><br>
+      Right-click to save ...
+    </div>
+  </div>
     </div> <!-- closing primaryContent   -->
 	<footer>
 		<p>
