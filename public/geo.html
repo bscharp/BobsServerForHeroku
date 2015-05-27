@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <title>HTML5 300 class topics</title>
     <script type="text/javascript" src="javascript/jquery-1.11.1.js"></script>
-
+    <script type="text/javascript" src="javascript/geo.js"></script>
      <link href="css/style1.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <header>
-	<h1>Store and retrieve data</h1> 
+	<h1>Geolocation</h1> 
 	</header>
 	<nav id="navigation" role="navigation">
 		<ul>
@@ -18,19 +18,20 @@
             <li><a href="ajax.html">How to use Ajax</a></li>
             <li><a href="canvas.html">How to draw using Canvas</a></li>
 			<li><a href="av.html">How to play and control audio/video</a></li>
-			<li><a href="camera.html">How to interact with camera and GPS</a></li>
-			<li><a href="data.html">How to store and retrieve data</a></li>
-			<li><a href="websocket.html">How to use WebSockets</a></li>  
+			<li><a href="geo.html">How to use Geolocation</a></li>
+			<li><a href="events.html">How to process input events</a></li>
+			<li><a href="webworkers.html">How to use Web Workers</a></li>  
 		</ul>
 		<h2>main navigation</h2> 
 	</nav>
     <div id="primaryContent">
 
       <article>
-        &nbsp;
+        <p>Although it's often discussed as part of HTML5, geolocation is actually a separate standard. With geolocation, you can grab hold of the geographic coordinates that pinpoint a web visitor's current location.</p>
       </article>
       <article>
-        &nbsp;
+        <p>The browser will now try to find your location.</p>
+        <p id="results">Where do you live?</p>
       </article>
     </div> <!-- closing primaryContent   -->
 	<footer>
