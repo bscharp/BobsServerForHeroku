@@ -6,11 +6,28 @@
     <script type="text/javascript" src="javascript/jquery-1.11.1.js"></script>
 
      <link href="css/style1.css" rel="stylesheet" type="text/css" />
+    <script>
+      $(document).ready(function() {
+	   $('html').dblclick(function() {
+		alert('ouch');
+	   }); // end doubleclick
+	   $('a').mouseover(function() {
+		var message = "<p>You moused over a link</p>";
+		$('.main').append(message);
+	   }); // end mouseover
+	   $('#button').click(function() {
+		$(this).val("Stop that!");
+	   }); // end click
+	   $('#textfield').focus(function() {
+		$(this).css('background-color','red');
+	   }); // end focus
+      }); // end ready
+   </script>
   </head>
 
   <body>
     <header>
-	<h1>Input events</h1> 
+	<h1>jQuery events</h1> 
 	</header>
 	<nav id="navigation" role="navigation">
 		<ul>
@@ -19,7 +36,7 @@
             <li><a href="canvas.html">How to draw using Canvas</a></li>
 			<li><a href="av.html">How to play and control audio/video</a></li>
 			<li><a href="geo.html">How to use Geolocation</a></li>
-			<li><a href="events.html">How to process input events</a></li>
+			<li><a href="events.html">Process events the jQuery way</a></li>
 			<li><a href="webworkers.html">How to use Web Workers</a></li>
 		</ul>
 		<h2>main navigation</h2> 
@@ -27,11 +44,25 @@
     <div id="primaryContent">
 
       <article>
-        &nbsp;
+        <p>JavaScript libraries like jQuery solve a lot of the problems with JavaScript programming - including pesky browser incompatibilities. Since events are so integral to JavaScript programing, it's better to think of event programming as a 3 step jQuery process:</p>
+        <p>1. Select one or more elements with a CSS selector.<br>$('#menu');</p>
+        <p>2. Assign an event.<br>$('#menu').click();</p>
+        <p>3. Pass a defined function to the event<br>$('#menu').click(startSlideShow);<br><br> or pass an anonymous function to the event<br>$('#menu').click(function() {<br>-- javascript code goes here --<br>}); // end click</p>
       </article>
       <article>
         &nbsp;
       </article>
+      	<div class="main">
+          <h2>Try some events</h2>
+          <p><a href="#">A Link</a></p>
+          <form action="#" method="get">
+            <fieldset>  
+              <legend>A Form</legend>
+              <p><input name="button" type="button" id="button" value="A Button"></p>
+              <p><input name="textfield" id="textfield" type="text"></p> 
+            </fieldset>
+          </form>
+      </div>
     </div> <!-- closing primaryContent   -->
 	<footer>
 		<p>
