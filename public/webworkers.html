@@ -6,6 +6,75 @@
     <script type="text/javascript" src="javascript/jquery-1.11.1.js"></script>
 
      <link href="css/style1.css" rel="stylesheet" type="text/css" />
+
+    <script>
+      var statusDisplay;
+      var worker;
+      var searchButton;
+
+      window.onload = function() {
+        statusDisplay = document.getElementById("status");
+        searchButton = document.getElementById("searchButton");
+      };
+
+      function doSearch() {
+        searchButton.disabled = true;
+
+        var fromNumber = document.getElementById("from").value;
+        var toNumber = document.getElementById("to").value;
+
+        worker = new Worker("javascript/PrimeWorker.js");
+        worker.onmessage = receivedWorkerMessage;
+        worker.onerror = workerError;
+  
+        worker.postMessage(
+        { from: fromNumber,
+          to: toNumber
+        }
+        );
+
+        statusDisplay.innerHTML = "A web worker is on the job ("+
+        fromNumber + " to " + toNumber + ") ...";  
+      }
+
+      function receivedWorkerMessage(event) {
+        var message = event.data;
+
+        if (message.messageType == "PrimeList") {
+          var primes = message.data;
+
+          var primeList = "";
+          for (var i=0; i<primes.length; i++) {
+            primeList += primes[i];
+            if (i != primes.length-1) primeList += ", ";
+          }
+          var displayList = document.getElementById("primeContainer");
+          displayList.innerHTML = primeList;
+
+          if (primeList.length == 0) {
+            statusDisplay.innerHTML = "Search failed to find any results.";
+          }
+          else {
+            statusDisplay.innerHTML = "The results are here!";
+          }
+          searchButton.disabled = false;
+        }
+        else if (message.messageType == "Progress") {
+          statusDisplay.innerHTML = message.data + "% done ...";
+        }
+      }
+
+      function workerError(error) {
+        statusDisplay.innerHTML = error.message;
+      }
+
+      function cancelSearch() {
+        worker.terminate();
+        worker = null;
+        statusDisplay.innerHTML = "";
+        searchButton.disabled = false;
+      }
+    </script>
   </head>
 
   <body>
@@ -27,10 +96,20 @@
     <div id="primaryContent">
 
       <article>
-        &nbsp;
+        <p>The web worker feature revolves around a new object called the Worker. When you want to run something in the background, you create a new Worker, give it some code and send it some data.</p>
+        <br>
+        <p>Here's an example that creates a new web worker that runs prime number search code in a separate file. Pick your range and click the button to start the search.</p>
+        <br>
       </article>
       <article>
-        &nbsp;
+        <p>Do a prime number search from <input id="from" value="1"> to <input id="to" value="200000">.</p>
+  <button id="searchButton" onclick="doSearch()">Start Searching</button>
+  <button onclick="cancelSearch()">Cancel</button>
+
+  <div id="primeContainer">
+  </div>
+
+  <div id="status"></div>
       </article>
     </div> <!-- closing primaryContent   -->
 	<footer>
